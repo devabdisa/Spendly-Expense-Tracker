@@ -30,7 +30,18 @@ exports.addIncome = async (req, res) => {
 };
 
 // Get All Income Source
-exports.getAllIncome = async (req, res) => {};
+exports.getAllIncome = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const income = await Income.find({ userId }).sort({ date: -1 }); // sort in DB query
+    res.json(income);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 
 // Delete Income Source
 exports.deleteIncome = async (req, res) => {};
