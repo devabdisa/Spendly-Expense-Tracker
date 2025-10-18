@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Expense = require("../models/Expense");
 const xlsx = require("xlsx");
 
-
 // Add Expense Source
 exports.addExpense = async (req, res) => {
   const userId = req.user.id;
@@ -46,10 +45,23 @@ exports.getAllExpense = async (req, res) => {
 
 // Delete Expense Source
 exports.deleteExpense = async (req, res) => {
+  const userId = req.user.id; // from your authMiddleware
+
   try {
-    await Expense.findByIdAndDelete(req.params._id);
+    const expense = await Expense.findOneAndDelete({
+      _id: req.params.id,
+      userId, // ensures the expense belongs to this user
+    });
+
+    if (!expense) {
+      return res
+        .status(404)
+        .json({ message: "Expense not found or not authorized" });
+    }
+
     res.json({ message: "Expense deleted successfully" });
   } catch (error) {
+    console.error("Delete error:", error);
     res.status(500).json({ message: "Server Error" });
   }
 };
