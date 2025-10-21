@@ -6,6 +6,7 @@ import { validateEmail } from "../../utils/helper";
 import ProfilePhotoSelector from "../../components/Input/ProfilePhotoSelector";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/userContext";
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -15,9 +16,11 @@ const SignUp = () => {
 
   const [error, setError] = useState(null);
 
+  const {updateUser} = UserContext(UserContext)
+
   const navigate = useNavigate();
 
-  //Handle sign up form submit
+  //Handle sign up form submits
 
   const handleSignUp = async (e) => {
     e.preventDefault();
