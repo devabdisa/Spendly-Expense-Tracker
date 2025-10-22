@@ -85,7 +85,7 @@ const Home = () => {
           /> */}
 
           <ExpenseTransactions
-            transactions={dashboardData?.last30DaysExpense?.transactions || []}
+            transactions={dashboardData?.last30DaysExpenses?.transactions || []}
             onSeeMore={() => navigate("/expense")}
           />
         </div>
