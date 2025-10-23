@@ -41,7 +41,7 @@ const CustomBarChart = ({ data }) => {
         <BarChart data={data}>
           <CartesianGrid stroke="none" />
           <XAxis
-            dataKey="month"
+            dataKey="category"
             tick={{ fontSize: 12, fill: "#555" }}
             stroke="none"
           />
@@ -49,16 +49,10 @@ const CustomBarChart = ({ data }) => {
 
           <Tooltip content={CustomTooltip} />
 
-          <Bar
-            dataKey="amount"
-            fill="#FF8042"
-            radius={[10, 10, 0, 0]}
-            activeDot={{ r: 8, fill: "yellow" }}
-            activeStyle={{ fill: "green" }}
-          >
-            {data.map((entry, index) => {
-              <Cell key={index} fill={getBarColor(index)} />;
-            })}
+          <Bar dataKey="amount" radius={[10, 10, 0, 0]}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={getBarColor(index)} />
+            ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
