@@ -5,27 +5,23 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Cell,
 } from "recharts";
 
 const CustomBarChart = ({ data }) => {
-  //Funcion to alternate colors
-  const getBarColor = (index) => {
-    return index % 2 === 0 ? "#875cf5" : "#cfbefb";
-  };
+  const getBarColor = (index) => (index % 2 === 0 ? "#FFD700" : "#FF8C00"); // gradient-inspired warm colors
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white shadow-md rounded-lg p-2 border border-gray-300 ">
-          <p className="text-xs font-semibold text-purple-800 mb-1">
+        <div className="bg-gray-800 text-gray-200 shadow-md rounded-lg p-2 border border-gray-700">
+          <p className="text-xs font-semibold text-yellow-400 mb-1">
             {payload[0].payload.category}
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm">
             Amount:{" "}
-            <span className="text-sm font-medium text-gray-900">
+            <span className="font-medium text-white">
               ${payload[0].payload.amount}
             </span>
           </p>
@@ -36,20 +32,17 @@ const CustomBarChart = ({ data }) => {
   };
 
   return (
-    <div className="bg-white mt-6">
+    <div className="bg-gray-900 mt-6 p-4 rounded-xl shadow-black/20">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <CartesianGrid stroke="none" />
           <XAxis
             dataKey="month"
-            tick={{ fontSize: 12, fill: "#555" }}
+            tick={{ fontSize: 12, fill: "#ccc" }}
             stroke="none"
           />
-
-          <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
-
+          <YAxis tick={{ fontSize: 12, fill: "#ccc" }} stroke="none" />
           <Tooltip content={CustomTooltip} />
-
           <Bar dataKey="amount" radius={[10, 10, 0, 0]}>
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={getBarColor(index)} />

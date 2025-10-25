@@ -9,24 +9,25 @@ const ExpenseOverview = ({ transactions, onExpenseIncome }) => {
   useEffect(() => {
     const result = prepareExpenseLineChartData(transactions);
     setChartData(result);
-
-    return () => {};
   }, [transactions]);
 
   return (
-    <div className="card">
+    <div className="card bg-gray-900 border border-gray-700">
       <div className="flex items-center justify-between">
-        <div className="">
-          <h5 className="text-lg">Expense Overview</h5>
+        <div>
+          <h5 className="text-lg text-white">Expense Overview</h5>
           <p className="text-xs text-gray-400 mt-0.5">
-            Track Your spending trends over time and gain insights into where
+            Track your spending trends over time and gain insights into where
             your money goes.
           </p>
         </div>
 
-        <button className="add-btn" onClick={onExpenseIncome}>
-          <LuPlus className="text-lg" />
-          Add Expense
+        <button
+          className="add-btn bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white "
+          onClick={onExpenseIncome}
+        >
+          <LuPlus className="text-lg text-white" />
+          <p className="text-white">Add Expense</p>
         </button>
       </div>
 

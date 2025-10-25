@@ -1,6 +1,6 @@
 import CustomPieChart from "../Charts/CustomPieChart";
 
-const COLORS = ["#875CF5", "#FA2C37", "#FF6900"];
+const COLORS = ["#FFD700", "#FF8C00", "#FF4500", "#4f39f6"]; // Warm gradient-inspired
 
 const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
   const balance = [
@@ -12,13 +12,13 @@ const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
   return (
     <div className="card">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg">Financial Overview</h5>
+        <h5 className="text-lg text-white">Financial Overview</h5>
       </div>
 
       <CustomPieChart
         data={balance}
         label="Total Balance"
-        totalAmount={`$${totalBalance} `}
+        totalAmount={`$${totalBalance}`}
         colors={COLORS}
         showTextAnchor
       />

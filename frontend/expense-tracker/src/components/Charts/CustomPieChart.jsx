@@ -16,8 +16,6 @@ const CustomPieChart = ({
   colors,
   showTextAnchor,
 }) => {
-
-
   return (
     <ResponsiveContainer width="100%" height={380}>
       <PieChart>
@@ -35,10 +33,8 @@ const CustomPieChart = ({
             <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
           ))}
         </Pie>
-
         <Tooltip content={<CustomTooltip />} />
         <Legend content={<CustomLegend />} />
-
         {showTextAnchor && (
           <>
             <text
@@ -46,7 +42,7 @@ const CustomPieChart = ({
               y="50%"
               dy={-25}
               textAnchor="middle"
-              fill="#666"
+              fill="#FFD700"
               fontSize="14px"
             >
               {label}
@@ -56,7 +52,7 @@ const CustomPieChart = ({
               y="50%"
               dy={8}
               textAnchor="middle"
-              fill="#333"
+              fill="white"
               fontSize="24px"
               fontWeight="600"
             >
